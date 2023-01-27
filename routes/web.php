@@ -1,6 +1,8 @@
 <?php
 
+use App\Models\Product;
 use Illuminate\Foundation\Application;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -15,8 +17,10 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Dashboard');
+Route::get('/', function (Request $request) {
+    return Inertia::render('Dashboard', [
+        'products' => Product::when($request->has('search'), fn ($query) => $query->where('title', 'like', '%' . $request->search . '%'))->paginate(16),
+    ]);
 })->name('dashboard');
 
 Route::middleware([
