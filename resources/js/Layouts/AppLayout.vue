@@ -158,6 +158,32 @@ const logout = () => {
                                 </Dropdown>
                             </div>
                         </div>
+                        <div v-else class="hidden sm:flex sm:items-center sm:ml-6">
+                            <!-- Log In/Sign In Dropdown -->
+                            <div class="ml-3 relative">
+                                <Dropdown align="right" width="48">
+                                    <template #trigger>
+                                        <span class="inline-flex rounded-md">
+                                            <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition">
+                                                Sign in / Sign Up
+                                            </button>
+                                        </span>
+                                    </template>
+
+                                    <template #content>
+                                        <!-- Login -->
+                                        <ResponsiveNavLink :href="route('login')" :active="route().current('login')">
+                                            Sing In
+                                        </ResponsiveNavLink>
+
+                                        <!-- Signin -->
+                                        <ResponsiveNavLink :href="route('register')" :active="route().current('register')">
+                                            Sign Up
+                                        </ResponsiveNavLink>
+                                    </template>
+                                </Dropdown>
+                            </div>
+                        </div>
 
                         <!-- Hamburger -->
                         <div class="-mr-2 flex items-center sm:hidden">
